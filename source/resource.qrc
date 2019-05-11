@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>set.ico</file>
+        <file>reconnect.ico</file>
+        <file>refresh.png</file>
+        <file>mysql.png</file>
+        <file>version.png</file>
+        <file>developer.png</file>
+        <file>settings.png</file>
+        <file>bug_repo.png</file>
+        <file>help.png</file>
+        <file>help_w.png</file>
+        <file>visibility_black_36dp.png</file>
+        <file>ic_border_color_black_36dp.png</file>
+        <file>ic_notifications_none_black_48dp.png</file>
+        <file>ic_public_black_48dp.png</file>
+        <file>ic_developer_mode_black_36dp.png</file>
+        <file>ic_error_outline_black_48dp.png</file>
+        <file>ic_rss_feed_black_48dp.png</file>
+        <file>ic_mail_outline_black_48dp.png</file>
+        <file>ic_cloud_download_2x.png</file>
+    </qresource>
+</RCC>

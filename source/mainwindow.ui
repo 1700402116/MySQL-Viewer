@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>400</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MySQL Viewer(offline edition)</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>270</y>
+      <width>381</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>40</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>IP地址：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>90</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>用户名：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>140</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>密码：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>190</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>数据库名称：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_ip">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>40</y>
+      <width>191</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_user">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>90</y>
+      <width>191</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_pass">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>140</y>
+      <width>191</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>360</y>
+      <width>131</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>连接</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>240</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>选择表：</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>240</y>
+      <width>191</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>360</y>
+      <width>131</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>显示列表</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_2">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>190</y>
+      <width>191</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>400</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_O">
+    <property name="title">
+     <string>选项(&amp;O)</string>
+    </property>
+    <widget class="QMenu" name="menu_M">
+     <property name="title">
+      <string>模式选择(&amp;M)</string>
+     </property>
+     <addaction name="actionview_V"/>
+     <addaction name="actionedit_E"/>
+    </widget>
+    <addaction name="actionrefresh_R"/>
+    <addaction name="menu_M"/>
+    <addaction name="actionnew_N"/>
+   </widget>
+   <widget class="QMenu" name="menu_A">
+    <property name="title">
+     <string>关于(&amp;A)</string>
+    </property>
+    <addaction name="actionversion_V"/>
+    <addaction name="actionupdate_U"/>
+   </widget>
+   <widget class="QMenu" name="menu_H">
+    <property name="title">
+     <string>帮助(&amp;H)</string>
+    </property>
+    <widget class="QMenu" name="menu_D">
+     <property name="title">
+      <string>开发者模式(&amp;D)</string>
+     </property>
+     <addaction name="actionbug_info_B"/>
+    </widget>
+    <addaction name="actiondevelop_D"/>
+    <addaction name="menu_D"/>
+   </widget>
+   <addaction name="menu_O"/>
+   <addaction name="menu_A"/>
+   <addaction name="menu_H"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(156, 156, 156);</string>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhNone</set>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionupdate_U"/>
+   <addaction name="actionrefresh_R"/>
+   <addaction name="actionnew_N"/>
+   <addaction name="actiondevelop_D"/>
+   <addaction name="actionbug_info_B"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionrefresh_R">
+   <property name="icon">
+    <iconset theme="刷新数据库" resource="resource.qrc">
+     <normaloff>:/icon/refresh.png</normaloff>:/icon/refresh.png</iconset>
+   </property>
+   <property name="text">
+    <string>刷新当前数据库(&amp;R)</string>
+   </property>
+   <property name="toolTip">
+    <string>刷新当前数据库连接以保持同步</string>
+   </property>
+  </action>
+  <action name="actionversion_V">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icon/version.png</normaloff>:/icon/version.png</iconset>
+   </property>
+   <property name="text">
+    <string>版本信息(&amp;V)</string>
+   </property>
+   <property name="toolTip">
+    <string>当前的软件版本</string>
+   </property>
+  </action>
+  <action name="actionupdate_U">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icon/ic_cloud_download_2x.png</normaloff>:/icon/ic_cloud_download_2x.png</iconset>
+   </property>
+   <property name="text">
+    <string>版本更新(&amp;U)</string>
+   </property>
+   <property name="toolTip">
+    <string>检测更新</string>
+   </property>
+  </action>
+  <action name="actionview_V">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icon/visibility_black_36dp.png</normaloff>:/icon/visibility_black_36dp.png</iconset>
+   </property>
+   <property name="text">
+    <string>查看模式(&amp;V)</string>
+   </property>
+  </action>
+  <action name="actionedit_E">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icon/ic_developer_mode_black_36dp.png</normaloff>:/icon/ic_developer_mode_black_36dp.png</iconset>
+   </property>
+   <property name="text">
+    <string>编辑模式(&amp;E)</string>
+   </property>
+  </action>
+  <action name="actiondevelop_D">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icon/ic_error_outline_black_48dp.png</normaloff>:/icon/ic_error_outline_black_48dp.png</iconset>
+   </property>
+   <property name="text">
+    <string>问题反馈(&amp;Q)</string>
+   </property>
+   <property name="toolTip">
+    <string>向开发者反馈软件存在的问题</string>
+   </property>
+  </action>
+  <action name="actionbug_info_B">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icon/ic_mail_outline_black_48dp.png</normaloff>:/icon/ic_mail_outline_black_48dp.png</iconset>
+   </property>
+   <property name="text">
+    <string>bug报告(&amp;B)</string>
+   </property>
+   <property name="toolTip">
+    <string>查看近期用户遇到的问题</string>
+   </property>
+  </action>
+  <action name="actionnew_N">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/icon/ic_rss_feed_black_48dp.png</normaloff>:/icon/ic_rss_feed_black_48dp.png</iconset>
+   </property>
+   <property name="text">
+    <string>新的连接(&amp;N)</string>
+   </property>
+   <property name="toolTip">
+    <string>重新连接一个新的服务器</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
