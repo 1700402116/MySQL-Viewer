@@ -29,7 +29,7 @@ Dialog::~Dialog()
 void Dialog::on_updButton_yes_clicked()
 {
     QUrl    web;
-    web = "http://47.100.173.197//1.rar";
+    web = DOWNLOAD_ADDR;
     QDesktopServices::openUrl(web);
 }
 

@@ -22,6 +22,7 @@
 #include <QLibrary>
 //每次升级程序后，除了更改数据库中的版本信息外，还要改变VERSION
 #define VERSION "1.2.6"
+#define DOWNLOAD_ADDR   "https://github.com/1700402116/MySQL-Viewer"
 //mysql -h 47.100.179.226 -uroot -p293368902
 
 //extern QString VERSION;
@@ -94,6 +95,7 @@ private:
     bool view_mode;
     bool edit_mode;
     bool is_latest;
+    bool is_Error;
 
     int col;
     int row;

@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     isConnect = false;
     view_mode = false;
     edit_mode = false;
+    is_Error  = false;
 
     ip = "47.100.173.197";
     databases = "mysql";
@@ -35,40 +36,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::version_check()
-{
-    QString latest_ver;
-    QString info;
-
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("47.100.173.197");//设置你远程服务器的IP
-    db.setUserName("root");//数据库用户名和密码
-    db.setPassword("cjluxk808");
-    db.setDatabaseName("remote");//use test_qt;
-    if (!db.open())
-        ui->label->setText("网络连接失败！");
-    QSqlQuery   query;
-    query.prepare(QString("SELECT * FROM version;"));
-    query.exec();
-    query.last();
-    latest_ver = query.value(0).toString();
-    info = query.value(1).toString();
-
-    //怕不是又要内存泄漏了
-    Dialog  *dlg = new Dialog(latest_ver,info,this);
-    //这里最后要改一下，因为版本是一致的
-    if(latest_ver != VERSION)
-    {
-        dlg->show();
-        is_latest = false;
-    }
-    else
-    {
-        is_latest = true;
-    }
-
-}
-
 //初始化数据库连接
 void MainWindow::MySQL_Init()
 {
@@ -78,26 +45,30 @@ void MainWindow::MySQL_Init()
     db.setPassword(password);
     db.setDatabaseName(databases);//use test_qt;
     if (!db.open())
-        ui->label->setText("连接失败！");
-    else
-        ui->label->setText("连接成功！");
-
-    QString cmd = "show databases;";
-    QSqlQuery query(cmd);
-    char a = 0;
-    if(!isConnect)
     {
-        ui->comboBox_2->clear();
-        while(query.seek(a))
-        {
-            ui->comboBox_2->addItem(query.value(0).toString());
-            a += 1;
-        }
-
-        ui->pushButton->setText("连接至数据库");
+        ui->label->setText("连接失败！");
+        is_Error = true;
     }
+    else
+        {
+            ui->label->setText("连接成功！");
+            is_Error = false;
+            QString cmd = "show databases;";
+            QSqlQuery query(cmd);
+            char a = 0;
+            if(!isConnect)
+            {
+                ui->comboBox_2->clear();
+                while(query.seek(a))
+                {
+                    ui->comboBox_2->addItem(query.value(0).toString());
+                    a += 1;
+                }
+                ui->pushButton->setText("连接至数据库");
+             }
+        }
 }
-
+//将表中数据显示到combo box中
 void MainWindow::table_init()
 {
     //保存数据库列名
@@ -183,7 +154,23 @@ void MainWindow::table_init()
     }
 
 }
+/******************************************按键响应*******************************/
+void MainWindow::on_pushButton_clicked()
+{
+    MySQL_Init();
+    if(!is_Error)
+    {
+        show_tables();
+        isConnect = true;
+    }
+}
 
+void MainWindow::on_pushButton_2_clicked()
+{
+    table_init();
+}
+
+/********************************************************************************/
 void MainWindow::show_tables()
 {
     if(isConnect)
@@ -200,20 +187,7 @@ void MainWindow::show_tables()
         }
     }
 }
-/******************************************按键响应*******************************/
-void MainWindow::on_pushButton_clicked()
-{
-    MySQL_Init();
-    show_tables();
-    isConnect = true;
-}
 
-void MainWindow::on_pushButton_2_clicked()
-{
-    table_init();
-}
-
-/********************************************************************************/
 void MainWindow::on_comboBox_2_currentIndexChanged(int index)
 {
     if(isConnect)
@@ -250,6 +224,7 @@ void MainWindow::on_actionrefresh_R_triggered()
 
     ui->pushButton->setEnabled(true);
 }
+/*******************************版本检测与升级********************************************/
 //用于显示当前版本信息
 void MainWindow::on_actionversion_V_triggered()
 {
@@ -258,6 +233,51 @@ void MainWindow::on_actionversion_V_triggered()
     version_info->information(NULL,"版本信息", ver);
 }
 
+//前往软件下载界面
+void MainWindow::on_actionupdate_U_triggered()
+{
+    version_check();
+    if(is_latest)
+    {
+        QString ver = "当前版本已为最新\n软件版本：";
+        ver = ver.append(VERSION);
+        version_info->information(NULL,"版本信息", ver);
+    }
+}
+//检查升级
+void MainWindow::version_check()
+{
+    QString latest_ver;
+    QString info;
+
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+    db.setHostName("47.100.173.197");//设置你远程服务器的IP
+    db.setUserName("root");//数据库用户名和密码
+    db.setPassword("cjluxk808");
+    db.setDatabaseName("remote");//use test_qt;
+    if (!db.open())
+        ui->label->setText("网络连接失败！");
+    QSqlQuery   query;
+    query.prepare(QString("SELECT * FROM version;"));
+    query.exec();
+    query.last();
+    latest_ver = query.value(0).toString();
+    info = query.value(1).toString();
+
+    //怕不是又要内存泄漏了
+    Dialog  *dlg = new Dialog(latest_ver,info,this);
+    //这里最后要改一下，因为版本是一致的
+    if(latest_ver != VERSION)
+    {
+        dlg->show();
+        is_latest = false;
+    }
+    else
+    {
+        is_latest = true;
+    }
+
+}
 /***************************用于在两种不同的模式之间进行选择**********************************/
 void MainWindow::on_actionview_V_triggered()
 {
@@ -352,18 +372,6 @@ void MainWindow::get_bug_info()
         query_seek += 1;
     }
     lists->show();
-}
-
-//前往软件下载界面
-void MainWindow::on_actionupdate_U_triggered()
-{
-    version_check();
-    if(is_latest)
-    {
-        QString ver = "当前版本已为最新\n软件版本：";
-        ver = ver.append(VERSION);
-        version_info->information(NULL,"版本信息", ver);
-    }
 }
 
 void MainWindow::on_actionbug_info_B_triggered()
