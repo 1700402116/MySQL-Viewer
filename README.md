@@ -1,7 +1,7 @@
 # MySQL Viewer
 这个项目主要利用Qt设计了一个轻便的MySQL编辑器，目前已经实现了对数据库的浏览，增删改查等功能还在开发中。
 
-<div align=center><img width="200" height="250" src="https://github.com/1700402116/MySQL-Viewer/blob/master/image/mainwindow.gif"/></div>
+<div align=center><img width="400" height="500" src="https://github.com/1700402116/MySQL-Viewer/blob/master/image/mainwindow.gif"/></div>
 以上是连接界面的大致样式
 
 ![image](https://github.com/1700402116/MySQL-Viewer/blob/master/image/table.jpg)
