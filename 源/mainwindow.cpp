@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ip = "47.100.173.197";
     databases = "mysql";
     user = "root";
-    //password = "cjluxk808";
+    //password = "";
 
     ui->lineEdit_ip->setText(ip);
     ui->comboBox_2->clear();
